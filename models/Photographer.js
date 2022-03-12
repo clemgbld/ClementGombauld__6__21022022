@@ -2,7 +2,7 @@ class Photographer {
   constructor(data) {
     this._name = data.name;
     this._id = data.id;
-    this._city = data._city;
+    this._city = data.city;
     this._tagline = data.tagline;
     this._price = data.price;
     this._portrait = data.portrait;
@@ -25,7 +25,7 @@ class Photographer {
   }
 
   get price() {
-    return this._price;
+    return `${this._price}€/jour`;
   }
 
   get picture() {

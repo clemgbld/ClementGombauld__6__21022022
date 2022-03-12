@@ -23,6 +23,7 @@
 }
 
 .main {
+  @include flex--full-center;
   width: 100%;
   max-width: $laptop;
 }

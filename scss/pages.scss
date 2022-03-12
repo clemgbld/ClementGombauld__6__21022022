@@ -1,5 +1,57 @@
+@import "utils.scss";
+
+// home page
 .photographer {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  row-gap: 7rem;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    width: 100%;
+    @include flex--full-center;
+  }
+
+  &__wrapper,
+  &__link {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__wrapper {
+    gap: 1rem;
+  }
+
+  &__link {
+    gap: 2.4rem;
+  }
+
+  &__img {
+    width: 16.6rem;
+    height: 16.6rem;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__name {
+    font-size: 3.6rem;
+    color: $secondary-color;
+  }
+
+  &__city {
+    font-size: 1.3rem;
+    color: $primary-color;
+  }
+
+  &__tagline {
+    font-size: 1rem;
+  }
+
+  &__price {
+    font-size: 0.9rem;
+    color: #757575;
+  }
 }
