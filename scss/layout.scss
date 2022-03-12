@@ -1,0 +1,28 @@
+@import "utils.scss";
+
+.header {
+  width: 100%;
+  max-width: $laptop;
+  margin-bottom: 5.2rem;
+
+  &__container {
+    @include flex-container(0);
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: $primary-color;
+    font-size: 3.6rem;
+  }
+
+  &__img {
+    width: 20rem;
+
+    object-fit: cover;
+  }
+}
+
+.main {
+  width: 100%;
+  max-width: $laptop;
+}

@@ -1,0 +1,26 @@
+///////// layout
+
+$laptop: 144rem;
+
+////////// color
+
+$primary-color: #901c1c;
+$secondary-color: #d3573c;
+$first-background: #525252;
+$second-background: #fafafa;
+
+/////////// mixin
+
+// flex
+
+@mixin flex--full-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-container($gap) {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+}
