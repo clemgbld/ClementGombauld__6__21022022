@@ -1,8 +1,4 @@
-// api import
-import PhotographersApi from "../api/Api.js";
-
-// factory import
-import PhotographerFactory from "../factories/PhotographerFactory.js";
+import Page from "./Page.js";
 
 // types import
 import { ITEM } from "../types/photographerTypes.js";
@@ -10,22 +6,13 @@ import { ITEM } from "../types/photographerTypes.js";
 // template import
 import PhotographerItem from "../Template/PhotographerItem.js";
 
-class Home {
+class Home extends Page {
   constructor() {
-    this.Photographers = [];
-
-    this.photographersApi = new PhotographersApi("/data/photographer.json");
-  }
-
-  async fetchPhotographers() {
-    const photographersData = await this.photographersApi.get();
-    this.Photographers = photographersData.photographers.map(
-      (photographerData) => new PhotographerFactory(photographerData, ITEM)
-    );
+    super();
   }
 
   async init() {
-    await this.fetchPhotographers();
+    await this.fetchPhotographers(ITEM);
 
     this.Photographers.forEach((photographer) => {
       const Template = new PhotographerItem(photographer);

@@ -1,0 +1,23 @@
+@import "utils.scss";
+
+.btn {
+  border: none;
+  border-radius: 5px;
+
+  background-color: $primary-color;
+  color: #fff;
+
+  padding: 2rem 1rem;
+
+  font-size: 2rem;
+
+  transition: all 0.3s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: $secondary-color;
+    color: #000;
+
+    cursor: pointer;
+  }
+}

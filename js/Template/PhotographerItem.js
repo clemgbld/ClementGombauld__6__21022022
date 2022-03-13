@@ -9,7 +9,7 @@ class PhotographerItem {
     const photographerItem = `
       <article class="photographer__container">
       <div class="photographer__wrapper">
-      <a class="photographer__link" href="/photographer.html?${this._photographer.id}">
+      <a class="photographer__link" href="/photographer.html?ID=${this._photographer.id}">
       <img class="photographer__img" role="img link" src=${this._photographer.picture} alt=${this._photographer.name}/>
       <h2 class="photographer__name" role="link">${this._photographer.name}</h2>
       </a>

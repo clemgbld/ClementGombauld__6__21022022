@@ -24,3 +24,20 @@ $second-background: #fafafa;
   align-items: center;
   gap: $gap;
 }
+
+// user
+
+@mixin user-img {
+  width: 16.6rem;
+  height: 16.6rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@mixin user-name {
+  color: $secondary-color;
+}
+
+@mixin user-city {
+  color: $primary-color;
+}
