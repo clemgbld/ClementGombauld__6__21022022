@@ -1,3 +1,5 @@
+@import "utils.scss";
+
 *,
 ::after,
 ::before {
@@ -22,6 +24,8 @@ body {
   font-weight: 400;
   font-size: 1.6rem;
   font-family: "DM Sans", sans-serif;
+
+  background-color: $second-background;
 }
 
 a {

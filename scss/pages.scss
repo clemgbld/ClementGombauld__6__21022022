@@ -1,6 +1,20 @@
 @import "utils.scss";
 
 // home page
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+
+    transform: translateY(2rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .photographer {
   width: 100%;
   display: grid;
@@ -10,8 +24,10 @@
   align-items: center;
 
   &__container {
+    opacity: 0;
     width: 100%;
     @include flex--full-center;
+    animation: fade-in 0.3s linear forwards;
   }
 
   &__wrapper,

@@ -6,6 +6,7 @@ class Api {
   async get() {
     try {
       const res = await fetch(this._url);
+
       const data = await res.json();
 
       return data;
@@ -20,7 +21,7 @@ class PhotographersApi extends Api {
     super(url);
   }
 
-  async getPhotographer() {
+  async getPhotographers() {
     return await this.get();
   }
 }
