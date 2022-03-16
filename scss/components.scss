@@ -1,29 +1,23 @@
 @import "utils.scss";
 
 .btn {
-  border: none;
-  border-radius: 5px;
-
-  background-color: $primary-color;
-  color: #fff;
-
-  padding: 2rem 1rem;
-
-  font-size: 2rem;
-
-  transition: all 0.3s ease-in-out;
-
+  @include main-box--style();
   &:hover,
   &:focus {
+    cursor: pointer;
+  }
+
+  &-form:hover,
+  &-form:focus {
     background-color: $secondary-color;
     color: #000;
-
-    cursor: pointer;
   }
 }
 
 .modal {
   position: fixed;
+  justify-content: center;
+  align-items: center;
   top: 0;
   left: 0;
   right: 0;
@@ -31,4 +25,93 @@
   display: none;
   z-index: 99;
   background-color: rgba(196, 196, 196, 0.4);
+
+  &__container {
+    background-color: lighten($secondary-color, 10%);
+    width: 66.9rem;
+
+    padding: 3.5rem;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3.6rem;
+  }
+
+  &__close {
+    transform: translateY(1rem);
+    border: none;
+    height: 4.2rem;
+    background-color: transparent;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__heading {
+    font-size: 6.4rem;
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  &__label {
+    font-size: 3.6rem;
+    margin-bottom: 1rem;
+    color: #312e2e;
+  }
+
+  &__input {
+    height: 6.8rem;
+    padding: 1rem;
+    font-size: 3.6rem;
+    color: #312e2e;
+  }
+
+  &__text {
+    height: 17rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    font-size: 3.6rem;
+    color: #312e2e;
+
+    resize: none;
+  }
+}
+
+// filter
+
+.sort {
+  &__container {
+    @include flex-container(1rem);
+  }
+
+  &__box {
+    position: relative;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 2.5rem;
+    right: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__filter {
+    @include main-box--style;
+    appearance: none;
+
+    padding: 2rem 1rem;
+  }
+
+  &__option {
+    height: 2.2rem;
+    &--selected {
+      display: none;
+    }
+  }
 }

@@ -1,3 +1,4 @@
+// bluePrint import
 import Page from "./Page.js";
 
 // types import

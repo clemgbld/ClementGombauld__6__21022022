@@ -1,12 +1,36 @@
 class PhotographerHeaderTemplate {
-  constructor(photographer) {
+  constructor(photographer, FormModalContext, FormModal) {
     this._photographer = photographer;
 
     this.$header = document.querySelector(".photographer-header");
+
+    this.FormModalContext = FormModalContext;
+    this.FormModal = FormModal;
   }
 
   displayForm() {
     const $btnForm = document.querySelector(".btn-form");
+
+    console.log($btnForm);
+
+    const openModal = () => {
+      console.log(this.FormModalContext.currentState);
+
+      if (this.FormModalContext.currentState?.isFirstLoad === false) {
+        // those 3 methods enable the form to be create , close , and submitted
+        this.FormModal.createForm();
+        this.FormModal.shouldCloseForm();
+        this.FormModal.onSubmit();
+
+        this.FormModalContext.onFirstLoad();
+      }
+
+      this.FormModal.displayForm();
+
+      this.FormModalContext.onOpen();
+    };
+
+    $btnForm.addEventListener("click", openModal);
   }
 
   createPhotographerHeaderTemplate() {

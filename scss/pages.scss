@@ -77,6 +77,8 @@
   background-color: $second-background;
   padding: 3.6rem 2.4rem;
 
+  margin-bottom: 2.4rem;
+
   &__container {
     @include flex-container(0);
     justify-content: space-between;

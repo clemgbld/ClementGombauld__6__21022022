@@ -41,3 +41,20 @@ $second-background: #fafafa;
 @mixin user-city {
   color: $primary-color;
 }
+
+@mixin main-box--style {
+  @include flex--full-center;
+  border: none;
+  border-radius: 5px;
+
+  width: 13.8rem;
+
+  background-color: $primary-color;
+  color: #fff;
+
+  padding: 2rem 0;
+
+  font-size: 2rem;
+
+  transition: all 0.3s ease-in-out;
+}

@@ -1,17 +1,33 @@
-export class ModalFormOpen {
+export class ModalFormOpenState {
   constructor() {
-    this.isOpen = true;
+    this._isOpen = true;
+  }
+
+  get isOpen() {
+    return this._isOpen;
   }
 }
 
-export class ModalFormClose {
+export class ModalFormCloseState {
   constructor() {
-    this.isOpen = false;
+    this._isOpen = false;
+  }
+
+  get isOpen() {
+    return this_.isOpen;
   }
 }
 
-export class ModalFirstLoad {
+export class ModalFirstLoadState {
   constructor() {
-    this.isFirstLoad = false;
+    this._isFirstLoad = false;
+  }
+
+  get isFirstLoad() {
+    return this._isFirstLoad;
+  }
+
+  set isFirstLoad(boolean) {
+    this._isFirstLoad = boolean;
   }
 }

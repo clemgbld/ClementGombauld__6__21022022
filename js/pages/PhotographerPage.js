@@ -1,12 +1,21 @@
+// bluePrint import
 import Page from "./Page.js";
 
+// type import
 import { HEADER } from "../types/photographerTypes.js";
 
+// template import
 import PhotographerHeaderTemplate from "../Template/PhotographerHeaderTemplate.js";
+import FormModal from "../Template/FormModal.js";
+
+// context import
+import FormModalContext from "../../modalForm/Context.js";
 
 class PhotographerPage extends Page {
   constructor() {
     super();
+
+    this.FormModalContext = new FormModalContext();
   }
 
   getId() {
@@ -25,9 +34,20 @@ class PhotographerPage extends Page {
     await this.fetchPhotographers(HEADER);
     const id = this.getId();
     const photographerData = this.getPhotographer(id);
-    const PhotographerHeader = new PhotographerHeaderTemplate(photographerData);
+
+    const FormModalPhotographer = new FormModal(
+      photographerData.name,
+      this.FormModalContext
+    );
+
+    const PhotographerHeader = new PhotographerHeaderTemplate(
+      photographerData,
+      this.FormModalContext,
+      FormModalPhotographer
+    );
 
     PhotographerHeader.createPhotographerHeaderTemplate();
+    PhotographerHeader.displayForm();
   }
 }
 
