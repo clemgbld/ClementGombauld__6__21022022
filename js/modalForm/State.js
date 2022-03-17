@@ -14,7 +14,7 @@ export class ModalFormCloseState {
   }
 
   get isOpen() {
-    return this_.isOpen;
+    return this._isOpen;
   }
 }
 

@@ -1,21 +1,38 @@
 // bluePrint import
 import Page from "./Page.js";
 
-// type import
+// types import
 import { HEADER } from "../types/photographerTypes.js";
+import { IMAGE, VIDEO } from "../types/mediatypes.js";
+import { POPULARITY } from "../types/sorterTypes.js";
 
 // template import
 import PhotographerHeaderTemplate from "../Template/PhotographerHeaderTemplate.js";
 import FormModal from "../Template/FormModal.js";
 
 // context import
-import FormModalContext from "../../modalForm/Context.js";
+import FormModalContext from "../modalForm/Context.js";
+
+// Api import
+import { MediasApi } from "../api/Api.js";
+
+// factory import
+import MediaFactory from "../factories/MediaFactory.js";
+
+// import proxy
+import ProxyMediaSorter from "../proxy/ProxyMediaSorter.js";
 
 class PhotographerPage extends Page {
   constructor() {
     super();
 
+    this.Medias = [];
+
+    this.mediaApi = new MediasApi("/data/media.json");
+
     this.FormModalContext = new FormModalContext();
+
+    this.ProxyMediaSorter = new ProxyMediaSorter();
   }
 
   getId() {
@@ -30,9 +47,30 @@ class PhotographerPage extends Page {
     )[0];
   }
 
+  async fetchMedias(photographerId) {
+    const mediasData = await this.mediaApi.get();
+
+    console.log(mediasData);
+
+    const mediasDataFilterd = mediasData.media.filter(
+      (mediaData) => photographerId === mediaData.photographerId
+    );
+    const mediasSortedByPopularity = this.ProxyMediaSorter.sorter(
+      mediasDataFilterd,
+      POPULARITY
+    );
+
+    this.Medias = mediasSortedByPopularity.data.map((mediaData) =>
+      mediaData.video
+        ? new MediaFactory(mediaData, VIDEO)
+        : new MediaFactory(mediaData, IMAGE)
+    );
+  }
+
   async init() {
     await this.fetchPhotographers(HEADER);
     const id = this.getId();
+    await this.fetchMedias(id);
     const photographerData = this.getPhotographer(id);
 
     const FormModalPhotographer = new FormModal(
@@ -48,6 +86,8 @@ class PhotographerPage extends Page {
 
     PhotographerHeader.createPhotographerHeaderTemplate();
     PhotographerHeader.displayForm();
+
+    console.log(this.Medias);
   }
 }
 

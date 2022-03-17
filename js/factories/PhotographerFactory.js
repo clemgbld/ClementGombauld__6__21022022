@@ -1,5 +1,5 @@
-import Photographer from "../../models/Photographer.js";
-import PhotographerHeader from "../../models/PhotographerHeader.js";
+import Photographer from "../models/Photographer.js";
+import PhotographerHeader from "../models/PhotographerHeader.js";
 import { ITEM, HEADER } from "../types/photographerTypes.js";
 
 class PhotographerFactory {

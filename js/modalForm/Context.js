@@ -12,16 +12,12 @@ class FormModalContext {
       new ModalFormCloseState(),
     ];
     this.currentState = this.getInitialState();
-
-    console.log(this.currentState);
   }
 
   getInitialState() {
     if (this.states[0].isFirstLoad === false) {
       return this.states[0];
     }
-
-    console.log("i am not here");
 
     return ModalFormCloseState[2];
   }

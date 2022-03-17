@@ -27,3 +27,13 @@ class PhotographersApi extends Api {
 }
 
 export default PhotographersApi;
+
+export class MediasApi extends Api {
+  constructor(url) {
+    super(url);
+  }
+
+  async getMedias() {
+    return await this.get();
+  }
+}
