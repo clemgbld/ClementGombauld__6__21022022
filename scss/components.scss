@@ -85,36 +85,72 @@
 
 // filter
 
-.sort {
+.dropdown {
   &__container {
-    @include flex-container(1rem);
+    display: flex;
+    gap: 1rem;
   }
 
-  &__box {
-    position: relative;
+  &__label {
+    font-weight: 700;
+    transform: translateY(1.7rem);
   }
 
-  &__arrow {
-    position: absolute;
-    top: 2.5rem;
-    right: 0;
-    transition: all 0.3s ease-in-out;
+  &__list {
+    overflow: hidden;
+    border-radius: 5px;
+    z-index: 80;
   }
 
-  &__filter {
+  &__toggle {
     @include main-box--style;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
+    justify-content: space-between;
+    border-radius: 0;
 
     padding: 2rem 1rem;
+
+    font-size: 1.8rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
-  &__option {
-    height: 2.2rem;
-    &--selected {
-      display: none;
+  &__icon {
+    color: #fff;
+
+    transition: all 0.3s ease-in-out;
+
+    &--rotate {
+      transform: translateY(-3px) rotate(180deg);
+      transition: all 0.3s ease-in;
+    }
+  }
+
+  &__item {
+    position: relative;
+    @include main-box--style;
+    justify-content: flex-start;
+
+    font-size: 1.8rem;
+    border-radius: 0;
+
+    padding-left: 1rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: 80%;
+      height: 2px;
+      background-color: #fff;
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }

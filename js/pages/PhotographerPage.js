@@ -6,12 +6,17 @@ import { HEADER } from "../types/photographerTypes.js";
 import { IMAGE, VIDEO } from "../types/mediatypes.js";
 import { POPULARITY } from "../types/sorterTypes.js";
 
+// views import
+import MediaFilter from "../views/MediaFilter.js";
+
 // template import
 import PhotographerHeaderTemplate from "../Template/PhotographerHeaderTemplate.js";
 import FormModal from "../Template/FormModal.js";
 
 // context import
-import FormModalContext from "../modalForm/Context.js";
+import FormModalContext from "../states/modalForm/Context.js";
+import FilterContext from "../states/filter/Context.js";
+import DropDownMenuContext from "../states/dropDownMenu/Context.js";
 
 // Api import
 import { MediasApi } from "../api/Api.js";
@@ -30,8 +35,12 @@ class PhotographerPage extends Page {
 
     this.mediaApi = new MediasApi("/data/media.json");
 
+    // context
     this.FormModalContext = new FormModalContext();
+    this.DropDownMenuContext = new DropDownMenuContext();
+    this.FilterContext = new FilterContext();
 
+    // Proxy
     this.ProxyMediaSorter = new ProxyMediaSorter();
   }
 
@@ -45,6 +54,10 @@ class PhotographerPage extends Page {
     return this.Photographers.filter(
       (photographer) => photographer.id === id
     )[0];
+  }
+
+  filter(filterName) {
+    this.Medias = this.ProxyMediaSorter.sorter(this.Medias, filterName);
   }
 
   async fetchMedias(photographerId) {
@@ -71,6 +84,12 @@ class PhotographerPage extends Page {
     await this.fetchPhotographers(HEADER);
     const id = this.getId();
     await this.fetchMedias(id);
+
+    const MediaFilterItem = new MediaFilter(
+      this.DropDownMenuContext,
+      this.FilterContext
+    );
+
     const photographerData = this.getPhotographer(id);
 
     const FormModalPhotographer = new FormModal(
@@ -87,7 +106,8 @@ class PhotographerPage extends Page {
     PhotographerHeader.createPhotographerHeaderTemplate();
     PhotographerHeader.displayForm();
 
-    console.log(this.Medias);
+    MediaFilterItem.allowToggleMenu();
+    MediaFilterItem.allowFilter();
   }
 }
 

@@ -47,44 +47,66 @@
       <section class="media">
         <div class="sort" id="8">
           <form class="sort__form">
-            <div class="sort__container">
-              <label for="filter-select" id="filter-label" class="sort__label">
-                trier par
-              </label>
-              <div class="dropdown">
-                <button
-                  class="button-a dropdown-toggle"
-                  role="button"
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Populaire
-                </button>
-
-                <ul
-                  role="button"
-                  aria-haspopup="listbox"
-                  aria-expanded="false"
-                  class="dropdown-menu"
-                  aria-labelledby="dropdownMenuButton"
-                >
-                  <li>
-                    <a
+            <div class="dropdown">
+              <div class="dropdown__container">
+                <label for="dropdownMenuButton" class="dropdown__label">
+                  trier par
+                </label>
+                <div class="dropdown__list">
+                  <button
+                    class="dropdown__toggle"
+                    role="button"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                  <span role="text" class="dropdown__text">
+                    Populaire
+                  </span>
+                   
+                    <span class="dropdown__icon"
+                      ><ion-icon name="chevron-down-outline"></ion-icon
+                    ></span>
+                  </button>
+                  <ul
+                    id="dropdownMenu"
+                    role="button"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    class="dropdown__menu hidden"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <li
                       role="option"
-                      id="filter-rate"
+                      id="POPULARITY"
                       data-listbox-value="rate"
-                      data-list-name="Popularité"
-                      class="dropdown-item"
-                      href="#"
-                      >Populaire</a
+                      data-list-name="Populaire"
+                      class="dropdown__item hidden"
                     >
-                  </li>
-                  <li><a class="dropdown-item" href="#">Date</a></li>
-                  <li><a class="dropdown-item" href="#">Titre</a></li>
-                </ul>
+                      <a href="#">Populaire</a>
+                    </li>
+                    <li
+                      role="option"
+                      id="DATE"
+                      data-listbox-value="date"
+                      data-list-name="Date"
+                      class="dropdown__item"
+                    >
+                      <a class="dropdown-item" href="#">Date</a>
+                    </li>
+                    <li
+                      role="option"
+                      id="TITLE"
+                      data-listbox-value="title"
+                      data-list-name="Titre"
+                      class="dropdown__item"
+                    >
+                      <a href="#">Titre</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </form>
