@@ -24,6 +24,9 @@ import { MediasApi } from "../api/Api.js";
 // factory import
 import MediaFactory from "../factories/MediaFactory.js";
 
+// subject import
+import CounterSubject from "../observers/CounterSubject.js";
+
 class PhotographerPage extends Page {
   constructor() {
     super();
@@ -37,6 +40,9 @@ class PhotographerPage extends Page {
     this.FormModalContext = new FormModalContext();
     this.DropDownMenuContext = new DropDownMenuContext();
     this.FilterContext = new FilterContext();
+
+    // subject
+    this.CounterSubject;
   }
 
   getAllLikes(medias) {
@@ -64,6 +70,10 @@ class PhotographerPage extends Page {
 
     this.getAllLikes(mediasDataFilterd);
 
+    const mediasLength = mediasDataFilterd.length;
+
+    this.CounterSubject = new CounterSubject(mediasLength);
+
     this.Medias = mediasDataFilterd.map((mediaData) =>
       mediaData.video
         ? new MediaFactory(mediaData, photographerName, VIDEO)
@@ -77,14 +87,19 @@ class PhotographerPage extends Page {
 
     const photographerData = this.getPhotographer(id);
 
-    console.log(photographerData);
-
     await this.fetchMedias(id, photographerData.name);
+
+    const InfoBottom = new Info(this.allLikes, photographerData.price);
+
+    this.CounterSubject.subscribe(InfoBottom);
+
+    InfoBottom.createInfo();
 
     const MediaFilterItem = new MediaFilter(
       this.Medias,
       this.DropDownMenuContext,
-      this.FilterContext
+      this.FilterContext,
+      this.CounterSubject
     );
 
     const FormModalPhotographer = new FormModal(
@@ -103,10 +118,6 @@ class PhotographerPage extends Page {
 
     MediaFilterItem.allowToggleMenu();
     MediaFilterItem.allowFilter();
-
-    const InfoBottom = new Info(this.allLikes, photographerData.price);
-
-    InfoBottom.createInfo();
   }
 }
 

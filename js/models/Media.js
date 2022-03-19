@@ -4,6 +4,7 @@ class Media {
     this._photographerId = mediaData.photographerId;
     this._title = mediaData.title;
     this._likes = mediaData.likes;
+    this._initialLikes = mediaData.likes;
     this._date = mediaData.date;
     this._price = mediaData.price;
     this._name = photographerName;
@@ -27,6 +28,10 @@ class Media {
 
   set likes(likes) {
     this._likes = likes;
+  }
+
+  get initialLikes() {
+    return this._initialLikes;
   }
 
   get date() {

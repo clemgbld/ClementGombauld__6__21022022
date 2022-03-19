@@ -6,8 +6,6 @@ class ProxyMediaSorter {
   }
 
   sorter(medias, orderBy) {
-    console.log(this.cache);
-
     const cachedResult = this.cache.find((el) => el.key === orderBy);
 
     if (cachedResult) {
@@ -18,11 +16,7 @@ class ProxyMediaSorter {
 
     const data = MediaSorter.sorter(medias, orderBy);
 
-    console.log(data);
-
     this.cache.push(data);
-
-    console.log(this.cache);
 
     return data;
   }

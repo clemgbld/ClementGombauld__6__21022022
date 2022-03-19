@@ -6,7 +6,7 @@ import ProxyMediaSorter from "../proxy/ProxyMediaSorter.js";
 import { IMAGE, VIDEO } from "../types/mediatypes.js";
 
 class MediaFilter {
-  constructor(Medias, DropDownMenuContext, FilterContext) {
+  constructor(Medias, DropDownMenuContext, FilterContext, CounterSubject) {
     this.$container = document.querySelector(".media__container");
 
     this.$dropDownMenu = document.getElementById("dropdownMenu");
@@ -25,7 +25,11 @@ class MediaFilter {
 
     this.ProxyMediaSorter = new ProxyMediaSorter();
 
+    this.CounterSubject = CounterSubject;
+
     this.sortAndShowCard(POPULARITY);
+
+    this.CounterSubject.subscribe(this);
   }
 
   clearCardContainer() {
@@ -33,8 +37,6 @@ class MediaFilter {
   }
 
   sortAndShowCard(type) {
-    console.log(type);
-
     this.Medias = this.ProxyMediaSorter.sorter(this.Medias, type).data;
 
     this.Medias.forEach((Media) => {
@@ -107,6 +109,8 @@ class MediaFilter {
     this.$byDateButton.addEventListener("click", () => this.filter(DATE));
     this.$byTitleButton.addEventListener("click", () => this.filter(TITLE));
   }
+
+  updateCounter() {}
 }
 
 export default MediaFilter;

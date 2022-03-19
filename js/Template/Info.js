@@ -21,6 +21,10 @@ class Info {
 
     this.$container.innerHTML = infos;
   }
+
+  updateCounter() {
+    console.log("info", this);
+  }
 }
 
 export default Info;
