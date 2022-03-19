@@ -1,7 +1,14 @@
 import { POPULARITY, TITLE, DATE } from "../types/sorterTypes.js";
 
+import MediaTemplateFactory from "../factories/MediaTemplateFactory.js";
+import ProxyMediaSorter from "../proxy/ProxyMediaSorter.js";
+
+import { IMAGE, VIDEO } from "../types/mediatypes.js";
+
 class MediaFilter {
-  constructor(DropDownMenuContext, FilterContext) {
+  constructor(Medias, DropDownMenuContext, FilterContext) {
+    this.$container = document.querySelector(".media__container");
+
     this.$dropDownMenu = document.getElementById("dropdownMenu");
     this.$toggleButton = document.getElementById("dropdownMenuButton");
     this.$byRateButton = document.getElementById(POPULARITY);
@@ -13,6 +20,30 @@ class MediaFilter {
 
     this.DropDownMenuContext = DropDownMenuContext;
     this.FilterContext = FilterContext;
+
+    this.Medias = Medias;
+
+    this.ProxyMediaSorter = new ProxyMediaSorter();
+
+    this.sortAndShowCard(POPULARITY);
+  }
+
+  clearCardContainer() {
+    this.$container.innerHTML = "";
+  }
+
+  sortAndShowCard(type) {
+    console.log(type);
+
+    this.Medias = this.ProxyMediaSorter.sorter(this.Medias, type).data;
+
+    this.Medias.forEach((Media) => {
+      const Template = Media.video
+        ? new MediaTemplateFactory(Media, VIDEO)
+        : new MediaTemplateFactory(Media, IMAGE);
+
+      Template.createCardItem();
+    });
   }
 
   toggleMenu = () => {
@@ -52,8 +83,6 @@ class MediaFilter {
     // change the content of the button by the content of the active filter
     this.$toggleButtonText.innerHTML = $activeFilter.dataset.listName;
 
-    //TODO: update the list of media
-
     // hide activefilter in the menu
     $activeFilter.classList.add("hidden");
 
@@ -65,6 +94,12 @@ class MediaFilter {
 
     // toggle the drop down menu
     this.toggleMenu();
+
+    // clear the dom
+    this.clearCardContainer();
+
+    // update the dom
+    this.sortAndShowCard(filterName);
   };
 
   allowFilter() {

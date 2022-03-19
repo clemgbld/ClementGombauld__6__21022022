@@ -4,14 +4,14 @@ import Page from "./Page.js";
 // types import
 import { HEADER } from "../types/photographerTypes.js";
 import { IMAGE, VIDEO } from "../types/mediatypes.js";
-import { POPULARITY } from "../types/sorterTypes.js";
 
 // views import
-import MediaFilter from "../views/MediaFilter.js";
+import MediaFilter from "../Template/MediaFilter.js";
 
 // template import
 import PhotographerHeaderTemplate from "../Template/PhotographerHeaderTemplate.js";
 import FormModal from "../Template/FormModal.js";
+import Info from "../Template/Info.js";
 
 // context import
 import FormModalContext from "../states/modalForm/Context.js";
@@ -24,14 +24,12 @@ import { MediasApi } from "../api/Api.js";
 // factory import
 import MediaFactory from "../factories/MediaFactory.js";
 
-// import proxy
-import ProxyMediaSorter from "../proxy/ProxyMediaSorter.js";
-
 class PhotographerPage extends Page {
   constructor() {
     super();
 
     this.Medias = [];
+    this.allLikes = 0;
 
     this.mediaApi = new MediasApi("/data/media.json");
 
@@ -39,9 +37,10 @@ class PhotographerPage extends Page {
     this.FormModalContext = new FormModalContext();
     this.DropDownMenuContext = new DropDownMenuContext();
     this.FilterContext = new FilterContext();
+  }
 
-    // Proxy
-    this.ProxyMediaSorter = new ProxyMediaSorter();
+  getAllLikes(medias) {
+    this.allLikes = medias.reduce((acc, curr) => acc + curr.likes, 0);
   }
 
   getId() {
@@ -56,41 +55,37 @@ class PhotographerPage extends Page {
     )[0];
   }
 
-  filter(filterName) {
-    this.Medias = this.ProxyMediaSorter.sorter(this.Medias, filterName);
-  }
+  async fetchMedias(photographerId, photographerName) {
+    const { media } = await this.mediaApi.get();
 
-  async fetchMedias(photographerId) {
-    const mediasData = await this.mediaApi.get();
-
-    console.log(mediasData);
-
-    const mediasDataFilterd = mediasData.media.filter(
+    const mediasDataFilterd = media.filter(
       (mediaData) => photographerId === mediaData.photographerId
     );
-    const mediasSortedByPopularity = this.ProxyMediaSorter.sorter(
-      mediasDataFilterd,
-      POPULARITY
-    );
 
-    this.Medias = mediasSortedByPopularity.data.map((mediaData) =>
+    this.getAllLikes(mediasDataFilterd);
+
+    this.Medias = mediasDataFilterd.map((mediaData) =>
       mediaData.video
-        ? new MediaFactory(mediaData, VIDEO)
-        : new MediaFactory(mediaData, IMAGE)
+        ? new MediaFactory(mediaData, photographerName, VIDEO)
+        : new MediaFactory(mediaData, photographerName, IMAGE)
     );
   }
 
   async init() {
     await this.fetchPhotographers(HEADER);
     const id = this.getId();
-    await this.fetchMedias(id);
+
+    const photographerData = this.getPhotographer(id);
+
+    console.log(photographerData);
+
+    await this.fetchMedias(id, photographerData.name);
 
     const MediaFilterItem = new MediaFilter(
+      this.Medias,
       this.DropDownMenuContext,
       this.FilterContext
     );
-
-    const photographerData = this.getPhotographer(id);
 
     const FormModalPhotographer = new FormModal(
       photographerData.name,
@@ -108,6 +103,10 @@ class PhotographerPage extends Page {
 
     MediaFilterItem.allowToggleMenu();
     MediaFilterItem.allowFilter();
+
+    const InfoBottom = new Info(this.allLikes, photographerData.price);
+
+    InfoBottom.createInfo();
   }
 }
 

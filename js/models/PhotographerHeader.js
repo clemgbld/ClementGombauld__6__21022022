@@ -5,6 +5,7 @@ class PhotographerHeader {
     this._city = data.city;
     this._tagline = data.tagline;
     this._portrait = data.portrait;
+    this._price = data.price;
   }
 
   get name() {
@@ -25,6 +26,10 @@ class PhotographerHeader {
 
   get picture() {
     return `/src/photographersIdPhotos/${this._portrait}`;
+  }
+
+  get price() {
+    return this._price;
   }
 }
 

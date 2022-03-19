@@ -29,3 +29,19 @@
   width: 100%;
   max-width: $laptop;
 }
+
+.media {
+  width: 100%;
+  max-width: 144rem;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(3, 40.6rem);
+    justify-content: center;
+
+    column-gap: 12rem;
+    row-gap: 2.4rem;
+
+    width: 100%;
+  }
+}

@@ -4,27 +4,38 @@ class MediaSorter {
   static sorter(mediaData, orderBy) {
     console.log("Get from Compute");
 
-    switch (orderBy) {
-      case POPULARITY:
-        return {
-          key: orderBy,
-          data: mediaData.sort((a, b) => b.likes - a.likes),
-        };
-      case TITLE:
-        return {
-          key: orderBy,
-          data: mediaData.sort((a, b) => a.title - b.title),
-        };
+    if (orderBy === POPULARITY) {
+      const result = {
+        key: orderBy,
+        data: Array.from(mediaData).sort((a, b) => b.likes - a.likes),
+      };
 
-      case DATE:
-        return {
-          key: orderBy,
-          data: mediaData.sort((a, b) => new Date(a.date) - new Date(b.date)),
-        };
-
-      default:
-        throw "Unknown type of sort";
+      return result;
     }
+
+    if (orderBy === TITLE) {
+      const result = {
+        key: orderBy,
+        data: Array.from(mediaData).sort((a, b) =>
+          a.title < b.title ? -1 : 1
+        ),
+      };
+
+      return result;
+    }
+
+    if (orderBy === DATE) {
+      const result = {
+        key: orderBy,
+        data: Array.from(mediaData).sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        ),
+      };
+
+      return result;
+    }
+
+    throw "Unknown type";
   }
 }
 

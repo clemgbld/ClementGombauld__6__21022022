@@ -26,6 +26,11 @@
   z-index: 99;
   background-color: rgba(196, 196, 196, 0.4);
 
+  overflow: scroll;
+
+  padding-top: 30rem;
+  padding-bottom: 5rem;
+
   &__container {
     background-color: lighten($secondary-color, 10%);
     width: 66.9rem;
@@ -86,6 +91,7 @@
 // filter
 
 .dropdown {
+  margin-bottom: 9rem;
   &__container {
     display: flex;
     gap: 1rem;
@@ -97,9 +103,13 @@
   }
 
   &__list {
-    overflow: hidden;
-    border-radius: 5px;
     z-index: 80;
+  }
+
+  &__box {
+    border-radius: 5px;
+    position: absolute;
+    overflow: hidden;
   }
 
   &__toggle {
@@ -152,5 +162,75 @@
     &:hover {
       cursor: pointer;
     }
+  }
+}
+
+// card
+
+.card {
+  &__video,
+  &__image {
+    width: 40.6rem;
+    height: 34.8rem;
+    object-fit: cover;
+    margin-bottom: 1.6rem;
+  }
+
+  &__content {
+    @include flex-container(0);
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: $secondary-color;
+    font-weight: 400;
+    font-size: 2.4rem;
+  }
+
+  &__btn {
+    @include flex-container(0.5rem);
+
+    border: none;
+    background-color: transparent;
+    color: $primary-color;
+
+    font-size: 2.4rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__heart {
+    transform: translateY(0.2rem);
+  }
+}
+
+// info
+.info {
+  position: fixed;
+  bottom: 0;
+  right: 2.4rem;
+
+  @include flex-container(0);
+
+  justify-content: space-between;
+
+  width: 37.6rem;
+  height: 8.9rem;
+  background-color: lighten($secondary-color, 10%);
+
+  border-radius: 5px 5px 0 0;
+
+  font-size: 2.4rem;
+
+  padding: 2.4rem;
+
+  &__likes {
+    @include flex-container(0.5rem);
+  }
+
+  &__heart {
+    transform: translateY(0.2rem);
   }
 }

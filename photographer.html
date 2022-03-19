@@ -53,65 +53,68 @@
                   trier par
                 </label>
                 <div class="dropdown__list">
-                  <button
-                    class="dropdown__toggle"
-                    role="button"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                  <span role="text" class="dropdown__text">
-                    Populaire
-                  </span>
-                   
-                    <span class="dropdown__icon"
-                      ><ion-icon name="chevron-down-outline"></ion-icon
-                    ></span>
-                  </button>
-                  <ul
-                    id="dropdownMenu"
-                    role="button"
-                    aria-haspopup="listbox"
-                    aria-expanded="false"
-                    class="dropdown__menu hidden"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    <li
-                      role="option"
-                      id="POPULARITY"
-                      data-listbox-value="rate"
-                      data-list-name="Populaire"
-                      class="dropdown__item hidden"
+                  <div class="dropdown__box">
+                    <button
+                      class="dropdown__toggle"
+                      role="button"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
                     >
-                      <a href="#">Populaire</a>
-                    </li>
-                    <li
-                      role="option"
-                      id="DATE"
-                      data-listbox-value="date"
-                      data-list-name="Date"
-                      class="dropdown__item"
+                      <span role="text" class="dropdown__text">
+                        Populaire
+                      </span>
+
+                      <span class="dropdown__icon"
+                        ><ion-icon name="chevron-down-outline"></ion-icon
+                      ></span>
+                    </button>
+                    <ul
+                      id="dropdownMenu"
+                      role="button"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      class="dropdown__menu hidden"
+                      aria-labelledby="dropdownMenuButton"
                     >
-                      <a class="dropdown-item" href="#">Date</a>
-                    </li>
-                    <li
-                      role="option"
-                      id="TITLE"
-                      data-listbox-value="title"
-                      data-list-name="Titre"
-                      class="dropdown__item"
-                    >
-                      <a href="#">Titre</a>
-                    </li>
-                  </ul>
+                      <li
+                        role="option"
+                        id="POPULARITY"
+                        data-listbox-value="rate"
+                        data-list-name="Populaire"
+                        class="dropdown__item hidden"
+                      >
+                        <a href="#">Populaire</a>
+                      </li>
+                      <li
+                        role="option"
+                        id="DATE"
+                        data-listbox-value="date"
+                        data-list-name="Date"
+                        class="dropdown__item"
+                      >
+                        <a class="dropdown-item" href="#">Date</a>
+                      </li>
+                      <li
+                        role="option"
+                        id="TITLE"
+                        data-listbox-value="title"
+                        data-list-name="Titre"
+                        class="dropdown__item"
+                      >
+                        <a href="#">Titre</a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </form>
         </div>
         <div class="media__container"></div>
+        <div class="info"></div>
       </section>
     </main>
     <script

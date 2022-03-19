@@ -12,7 +12,6 @@ class PhotographerHeaderTemplate {
     const $btnForm = document.querySelector(".btn-form");
 
     const openModal = () => {
-    
       if (this.FormModalContext.currentState?.isFirstLoad === false) {
         // those 3 methods enable the form to be create , close , and submitted
         this.FormModal.createForm();
@@ -25,6 +24,10 @@ class PhotographerHeaderTemplate {
       this.FormModal.displayForm();
 
       this.FormModalContext.onOpen();
+
+      const $closeBtn = document.querySelector(".modal__close");
+
+      $closeBtn.focus();
     };
 
     $btnForm.addEventListener("click", openModal);
