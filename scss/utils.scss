@@ -59,8 +59,17 @@ $second-background: #fafafa;
   transition: all 0.3s ease-in-out;
 }
 
+@mixin reset-btn{
+  border: none;
+
+  background-color: transparent;
+}
+
 // hidden
 
 .hidden {
   display: none;
 }
+
+
+

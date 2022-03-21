@@ -8,11 +8,16 @@ class CounterSubject {
   }
 
   subscribe(observer) {
-    this._observers.push(observer);
-
-    if (this._observers.length > this.mediaLength + this.unRemovableObservers) {
+    if (
+      this._observers.length ===
+      this.mediaLength + this.unRemovableObservers
+    ) {
       this.autoUnsbscribe();
     }
+
+    this._observers.push(observer);
+
+    console.log(this._observers);
   }
 
   unsubscribe(observer) {
@@ -20,11 +25,11 @@ class CounterSubject {
   }
 
   autoUnsbscribe() {
-    this._observers = this._observers.slice(2);
+    this._observers = this._observers.slice(0, 2);
   }
 
-  fire() {
-    this._observers.forEach((observer) => observer.updateCounter());
+  fire(action) {
+    this._observers.forEach((observer) => observer.updateCounter(action));
   }
 }
 

@@ -5,6 +5,8 @@ import ProxyMediaSorter from "../proxy/ProxyMediaSorter.js";
 
 import { IMAGE, VIDEO } from "../types/mediatypes.js";
 
+import LightBox from "./LightBox.js";
+
 class MediaFilter {
   constructor(Medias, DropDownMenuContext, FilterContext, CounterSubject) {
     this.$container = document.querySelector(".media__container");
@@ -27,9 +29,13 @@ class MediaFilter {
 
     this.CounterSubject = CounterSubject;
 
-    this.sortAndShowCard(POPULARITY);
+    this.firstLoad = false;
 
     this.CounterSubject.subscribe(this);
+
+    this.sortAndShowCard(POPULARITY);
+
+    this.LightBox = new LightBox(this.Medias);
   }
 
   clearCardContainer() {
@@ -39,13 +45,17 @@ class MediaFilter {
   sortAndShowCard(type) {
     this.Medias = this.ProxyMediaSorter.sorter(this.Medias, type).data;
 
-    this.Medias.forEach((Media) => {
+    this.Medias.forEach((Media, i) => {
       const Template = Media.video
-        ? new MediaTemplateFactory(Media, VIDEO)
-        : new MediaTemplateFactory(Media, IMAGE);
+        ? new MediaTemplateFactory(Media, this.CounterSubject, i, VIDEO)
+        : new MediaTemplateFactory(Media, this.CounterSubject, i, IMAGE);
 
       Template.createCardItem();
     });
+
+    if (!this.firstLoad) return (this.firstLoad = true);
+
+    this.LightBox.updateMedias(this.Medias);
   }
 
   toggleMenu = () => {
@@ -110,7 +120,18 @@ class MediaFilter {
     this.$byTitleButton.addEventListener("click", () => this.filter(TITLE));
   }
 
-  updateCounter() {}
+  updateCounter(id) {
+    let index;
+
+    this.Medias.forEach((Media, i) => (Media.id === id ? (index = i) : ""));
+
+    if (this.Medias[index].likes === this.Medias[index].initialLikes) {
+      this.Medias[index].likes++;
+      return;
+    }
+
+    this.Medias[index].likes--;
+  }
 }
 
 export default MediaFilter;

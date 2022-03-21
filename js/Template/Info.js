@@ -3,6 +3,7 @@ class Info {
     this.$container = document.querySelector(".info");
 
     this.allLikes = allLikes;
+    this.allIds = [];
     this.price = price;
   }
 
@@ -10,7 +11,7 @@ class Info {
     const infos = `
         
         <div class="info__likes">
-        <p>${this.allLikes}</p>
+        <p class="info__allLikes">${this.allLikes}</p>
         <span class="info__heart">
         <ion-icon name="heart"></ion-icon>
         </span>
@@ -22,8 +23,22 @@ class Info {
     this.$container.innerHTML = infos;
   }
 
-  updateCounter() {
-    console.log("info", this);
+  updateCounter(id) {
+    if (!this.allIds.includes(id)) {
+      this.allLikes++;
+      this.allIds.push(id);
+      return this.updateCounterView();
+    }
+
+    this.allLikes--;
+    this.allIds = this.allIds.filter((el) => el !== id);
+    this.updateCounterView();
+  }
+
+  updateCounterView() {
+    const $allLikes = document.querySelector(".info__allLikes");
+
+    $allLikes.innerHTML = `${this.allLikes}`;
   }
 }
 

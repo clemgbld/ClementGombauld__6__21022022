@@ -200,10 +200,6 @@
       cursor: pointer;
     }
   }
-
-  &__heart {
-    transform: translateY(0.2rem);
-  }
 }
 
 // info
@@ -232,5 +228,62 @@
 
   &__heart {
     transform: translateY(0.2rem);
+  }
+}
+
+// lightbox
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include flex--full-center;
+
+  background-color: #fff;
+
+  z-index: 99;
+
+  &__container {
+    position: relative;
+
+    @include flex-container(1.6rem);
+  }
+
+  &__close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1.6rem;
+
+    @include reset-btn;
+  }
+
+  &__svg{
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &__arrow {
+    color: $primary-color;
+    font-size: 5.5rem;
+  }
+
+  &__media {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  &__img, &__video {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: cover;
+  }
+
+  &__title {
+    color: $primary-color;
+    font-size: 2.4rem;
   }
 }
