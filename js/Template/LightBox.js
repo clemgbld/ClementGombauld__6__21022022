@@ -1,6 +1,6 @@
 class LightBox {
   constructor(Medias) {
-    this.body = document.body;
+    this.$body = document.body;
     this.$closeButton = document.querySelector(".lightbox__close");
     this.$previousButton = document.querySelector(".lightbox__previous");
     this.$nextButton = document.querySelector(".lightbox__next");
@@ -60,7 +60,7 @@ class LightBox {
   }
 
   closeLightbox() {
-    this.body.style.overflow = "scroll";
+    this.$body.style.overflow = "scroll";
     this.$lightbox.classList.add("hidden");
   }
 

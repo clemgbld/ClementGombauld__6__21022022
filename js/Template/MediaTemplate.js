@@ -1,6 +1,6 @@
 class MediaTemplate {
   constructor(Media, CounterSubject, index) {
-    this.body = document.body;
+    this.$body = document.body;
     this.$closeButton = document.querySelector(".lightbox__close");
 
     this.$lightbox = document.querySelector(".lightbox");
@@ -21,7 +21,7 @@ class MediaTemplate {
   }
 
   openLightBox() {
-    this.body.style.overflow = "hidden";
+    this.$body.style.overflow = "hidden";
     this.$lightbox.classList.remove("hidden");
     this.$lightboxMediaContainer.setAttribute("data-slide", `${this.index}`);
 
