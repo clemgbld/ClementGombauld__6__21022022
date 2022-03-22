@@ -25,7 +25,7 @@ class PhotographerHeader {
   }
 
   get picture() {
-    return `/src/photographersIdPhotos/${this._portrait}`;
+    return `./src/photographersIdPhotos/${this._portrait}`;
   }
 
   get price() {
