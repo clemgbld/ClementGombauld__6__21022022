@@ -1,5 +1,6 @@
 class MediaTemplate {
   constructor(Media, CounterSubject, index) {
+    this.body = document.body;
     this.$closeButton = document.querySelector(".lightbox__close");
 
     this.$lightbox = document.querySelector(".lightbox");
@@ -17,11 +18,10 @@ class MediaTemplate {
     this.CounterSubject.subscribe(this);
 
     this.index = index;
-
-    console.log(this.id);
   }
 
   openLightBox() {
+    this.body.style.overflow = "hidden";
     this.$lightbox.classList.remove("hidden");
     this.$lightboxMediaContainer.setAttribute("data-slide", `${this.index}`);
 
@@ -92,11 +92,7 @@ class MediaTemplate {
   }
 
   updateCounter(id) {
-    console.log(this.id);
     if (id !== this.id) return;
-
-    console.log(id);
-    console.log(this.id);
 
     if (this.initialLikes === this.likes) {
       this.likes++;

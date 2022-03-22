@@ -23,7 +23,7 @@ class FormModalContext {
   }
 
   onFirstLoad() {
-    console.log("first load");
+    console.log("modal first load");
 
     this.states[0].isFirstLoad = true;
     this.currentState = this.states.filter(
@@ -32,7 +32,7 @@ class FormModalContext {
   }
 
   onOpen() {
-    console.log("opened");
+    console.log("modal opened");
 
     this.currentState = this.states.filter(
       (state) => state !== this.currentState
@@ -40,7 +40,7 @@ class FormModalContext {
   }
 
   onClose() {
-    console.log("closed");
+    console.log("modal closed");
 
     this.currentState = this.states.filter(
       (state) => state !== this.currentState

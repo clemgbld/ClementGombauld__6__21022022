@@ -16,8 +16,6 @@ class CounterSubject {
     }
 
     this._observers.push(observer);
-
-    console.log(this._observers);
   }
 
   unsubscribe(observer) {
