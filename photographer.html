@@ -19,17 +19,16 @@
   <body id="body">
     <!-- form and lightbox -->
     <!-- form -->
-    <aside id="2">
+    <div id="2">
       <div
         class="modal"
         aria-hidden="true"
         role="dialog"
         aria-labelledby="2"
-        aria-hidden="true"
       ></div>
-    </aside>
+    </div>
     <!-- lightbox -->
-    <aside
+    <div
       class="lightbox hidden"
       role="dialog"
       aria-label="image closeup view"
@@ -67,7 +66,7 @@
           <ion-icon name="chevron-forward-outline"></ion-icon>
         </a>
       </div>
-    </aside>
+    </div>
 
     <!--  -->
 
@@ -76,10 +75,10 @@
       <nav role="navigation" aria-label="breadcrumb">
         <ul class="header__container">
           <li>
-            <a href="/index.html"
+            <a href="/index.html" role="link"
               ><img
                 class="header__img"
-                role="img link"
+                role="img"
                 src="src/images/logo.png"
                 alt="Fisheye Home page"
             /></a>
@@ -108,9 +107,7 @@
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <span role="text" class="dropdown__text">
-                        Populaire
-                      </span>
+                      <span class="dropdown__text"> Populaire </span>
 
                       <span class="dropdown__icon"
                         ><ion-icon name="chevron-down-outline"></ion-icon
@@ -118,7 +115,7 @@
                     </button>
                     <ul
                       id="dropdownMenu"
-                      role="button"
+                      role="listbox"
                       aria-haspopup="listbox"
                       aria-expanded="false"
                       class="dropdown__menu hidden"
