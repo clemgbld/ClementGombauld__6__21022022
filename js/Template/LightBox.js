@@ -25,9 +25,9 @@ class LightBox {
     ${
       this.Medias[index].video
         ? `<video aria-label=${this.Medias[index].title} class="lightbox__video" controls>
-    <source src=${this.Medias[index].video} type="video/mp4" >
+    <source src="${this.Medias[index].video}" type="video/mp4" >
     </video>`
-        : `<img class="lightbox__img" src=${this.Medias[index].picture} alt=${this.Medias[index].title}/>`
+        : `<img class="lightbox__img" src=${this.Medias[index].picture} alt="${this.Medias[index].title}"/>`
     }
     <h2 class="lightbox__title">${this.Medias[index].title}</h2>
     `;
@@ -46,10 +46,10 @@ class LightBox {
     const mediaContent = `
       ${
         this.Medias[index].video
-          ? `<video aria-label=${this.Medias[index].title} class="lightbox__video" controls>
+          ? `<video aria-label="${this.Medias[index].title}" class="lightbox__video" controls>
       <source src=${this.Medias[index].video} type="video/mp4" >
       </video>`
-          : `<img class="lightbox__img" src=${this.Medias[index].picture} alt=${this.Medias[index].title}/>`
+          : `<img class="lightbox__img" src="${this.Medias[index].picture}" alt="${this.Medias[index].title}"/>`
       }
       <h2 class="lightbox__title">${this.Medias[index].title}</h2>
       `;

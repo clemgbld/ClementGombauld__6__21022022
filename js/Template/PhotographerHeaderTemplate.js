@@ -42,7 +42,7 @@ class PhotographerHeaderTemplate {
             <p role="text" class="photographer-header__tagline">${this._photographer.tagline}</p>
            </div>
            <button class="btn btn-form">Contactez-moi</button>
-           <img class="photographer-header__img" role="img" src=${this._photographer.picture} alt=${this._photographer.name}/>
+           <img class="photographer-header__img" role="img" src="${this._photographer.picture}" alt="${this._photographer.name}"/>
           </div>  
       `;
 

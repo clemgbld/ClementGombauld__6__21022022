@@ -28,10 +28,10 @@ class MediaTemplate {
     const mediaContent = `
     ${
       this.video
-        ? `<video aria-label=${this.title} class="lightbox__video" controls>
-    <source src=${this.video} type="video/mp4" >
+        ? `<video aria-label="${this.title}" class="lightbox__video" controls>
+    <source src="${this.video}" type="video/mp4" >
     </video>`
-        : `<img class="lightbox__img" src=${this.picture} alt=${this.title}/>`
+        : `<img class="lightbox__img" src="${this.picture}" alt="${this.title}"/>`
     }
     <h2 class="lightbox__title">${this.title}</h2>
     `;
@@ -47,10 +47,10 @@ class MediaTemplate {
       <a href="javascript:void(0)" class="card_media" id="media-${this.id}">
       ${
         this.video
-          ? `<video aria-label=${this.title} class="card__video">
-      <source src=${this.video} type="video/mp4" >
+          ? `<video aria-label="${this.title}" class="card__video">
+      <source src="${this.video}" type="video/mp4" >
       </video>`
-          : `<img class="card__image" src=${this.picture} alt=${this.title}/>`
+          : `<img class="card__image" src="${this.picture}" alt="${this.title}"/>`
       }
       </a>
       <div class="card__content">
