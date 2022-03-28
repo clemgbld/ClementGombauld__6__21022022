@@ -21,9 +21,11 @@ class MediaTemplate {
   }
 
   openLightBox() {
+    this.$body.setAttribute("aria-hidden", 'true');
     this.$body.style.overflow = "hidden";
     this.$lightbox.classList.remove("hidden");
     this.$lightboxMediaContainer.setAttribute("data-slide", `${this.index}`);
+
 
     const mediaContent = `
     ${

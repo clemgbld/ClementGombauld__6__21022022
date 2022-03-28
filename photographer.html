@@ -16,7 +16,7 @@
 
     <script type="module" src="/js/pages/PhotographerPage.js"></script>
   </head>
-  <body id="body">
+  <body id="body" aria-hidden="false">
     <!-- form and lightbox -->
     <!-- form -->
     <div id="2">
@@ -50,22 +50,16 @@
             />
           </svg>
         </button>
-        <a
+        <button
           class="lightbox__arrow lightbox__previous"
-          href="#"
-          title="previous slide"
+          aria-label="previous slide"
         >
           <ion-icon name="chevron-back-outline"></ion-icon>
-        </a>
+        </button>
         <div class="lightbox__media" data-slide=""></div>
-        <a
-          class="lightbox__arrow lightbox__next"
-          href="#"
-          aria-label="Next image"
-          title="next image"
-        >
+        <button class="lightbox__arrow lightbox__next" aria-label="Next image">
           <ion-icon name="chevron-forward-outline"></ion-icon>
-        </a>
+        </button>
       </div>
     </div>
 
@@ -129,7 +123,7 @@
                         data-list-name="Populaire"
                         class="dropdown__item hidden"
                       >
-                        <a href="#">Populaire</a>
+                        <a href="javascript:void(0)">Populaire</a>
                       </li>
                       <li
                         role="option"
@@ -138,7 +132,9 @@
                         data-list-name="Date"
                         class="dropdown__item"
                       >
-                        <a class="dropdown-item" href="#">Date</a>
+                        <a class="dropdown-item" href="javascript:void(0)"
+                          >Date</a
+                        >
                       </li>
                       <li
                         role="option"
@@ -147,7 +143,7 @@
                         data-list-name="Titre"
                         class="dropdown__item"
                       >
-                        <a href="#">Titre</a>
+                        <a href="javascript:void(0)">Titre</a>
                       </li>
                     </ul>
                   </div>

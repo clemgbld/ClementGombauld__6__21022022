@@ -60,6 +60,7 @@ class LightBox {
   }
 
   closeLightbox() {
+    this.$body.setAttribute("aria-hidden", "false");
     this.$body.style.overflow = "scroll";
     this.$lightbox.classList.add("hidden");
   }
@@ -88,7 +89,7 @@ class LightBox {
       }
     };
 
-    const previousSlide = () => {
+    const previousSlide = (e) => {
       this.previousSlide();
     };
 
